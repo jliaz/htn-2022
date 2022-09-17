@@ -1,24 +1,79 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState} from 'react';
+import { Button, Grid } from '@mui/material';
+import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+
+
+let theme = createTheme({
+  palette: {
+    primary: {
+      main: "#FAC460",
+    },
+    secondary: {
+      main: "#9C9B69",
+    }
+  }
+});
+
+theme = responsiveFontSizes(theme);
 
 function App() {
+
+  const [uploadedImage, setUploadedImage] = useState();
+
+  const onImageUpload = (event) => {
+    console.log(event);
+    setUploadedImage(URL.createObjectURL(event.target.files[0]));
+  }
+
+  const isMobile = useMediaQuery('(max-width:600px)');
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Grid
+          container
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Grid
+            item
+            sx={{
+              borderColor:"#9C9B69",
+              borderStyle: "dashed",
+              borderWidth: theme.spacing(1),
+              padding: theme.spacing(4),
+              width: "75%",
+              height: "400px",
+            }}
+          >
+            {uploadedImage ? 
+              <img src={uploadedImage} width={isMobile ? "auto": "40%"} height={isMobile ? "200px" : "auto"}/> : 
+              <Button
+                  variant="contained"
+                  component="label"
+                  color='secondary'
+                >
+                  upload file
+                  <input
+                    type="file"
+                    hidden
+                    accept="image/*" 
+                    onChange={onImageUpload}
+                  />
+              </Button>
+            }
+          </Grid>
+        </Grid>
+        
+     
+      </div>
+    </ThemeProvider>
   );
 }
 
