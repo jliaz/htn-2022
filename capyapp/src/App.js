@@ -5,6 +5,7 @@ import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/s
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Canvas from "./Canvas";
 
+import CapyButton from "./CapyButton";
 
 
 let theme = createTheme({
@@ -27,6 +28,10 @@ function App() {
   const onImageUpload = (event) => {
     console.log(event);
     setUploadedImage(URL.createObjectURL(event.target.files[0]));
+  }
+
+  const onButtonClick = () => {
+    console.log("capyfying image...");
   }
 
   const isMobile = useMediaQuery('(max-width:600px)');
@@ -75,8 +80,7 @@ function App() {
             <Canvas />
           </Grid>
         </Grid>
-        
-     
+        <CapyButton onButtonClick={onButtonClick}/>
       </div>
     </ThemeProvider>
   );
