@@ -3,6 +3,7 @@ import { useEffect, useState} from 'react';
 import { Button, Grid } from '@mui/material';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import Canvas from "./Canvas";
 
 
 
@@ -68,6 +69,10 @@ function App() {
                   />
               </Button>
             }
+          </Grid>
+          
+          <Grid>
+            <Canvas />
           </Grid>
         </Grid>
         
