@@ -3,9 +3,9 @@ import { Button } from "@mui/material";
 
 const CapyButton = (props) => {
 
-    const { onClick } = props;
+    const { onButtonClick } = props;
     const onClicked = () => {
-        onClick();
+        onButtonClick();
     }
 
     return(
@@ -14,7 +14,7 @@ const CapyButton = (props) => {
             borderWidth: "5px",
             backgroundColor: "white"
         }}
-        onClick={onClicked}>Go</Button>
+        onClick={onClicked}>Capyfy</Button>
     )
 
 }

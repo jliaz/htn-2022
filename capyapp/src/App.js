@@ -3,7 +3,7 @@ import { useEffect, useState} from 'react';
 import { Button, Grid } from '@mui/material';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-
+import CapyButton from "./CapyButton";
 
 
 let theme = createTheme({
@@ -26,6 +26,10 @@ function App() {
   const onImageUpload = (event) => {
     console.log(event);
     setUploadedImage(URL.createObjectURL(event.target.files[0]));
+  }
+
+  const onButtonClick = () => {
+    console.log("capyfying image...");
   }
 
   const isMobile = useMediaQuery('(max-width:600px)');
@@ -70,8 +74,7 @@ function App() {
             }
           </Grid>
         </Grid>
-        
-     
+        <CapyButton onButtonClick={onButtonClick}/>
       </div>
     </ThemeProvider>
   );
